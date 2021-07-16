@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="pokemon_type">Nome: %i</string>
+    <string name="pokemon_height">%s m</string>
+    <string name="pokemon_weight">%s kg</string>
+
+</resources>
