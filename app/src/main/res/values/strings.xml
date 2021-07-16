@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">pokemon_api</string>
+    <string name="app_name">Pokedex</string>
 
     <string name="ops_error">Pika pika algo deu errado na sua solicitação</string>
     <string name="over_rate_limit">Você excedeu seu limite de taxa. Tente mais tarde.</string>
