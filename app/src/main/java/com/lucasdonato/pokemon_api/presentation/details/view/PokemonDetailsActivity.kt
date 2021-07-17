@@ -1,14 +1,13 @@
 package com.lucasdonato.pokemon_api.presentation.details.view
 
+import Abilities
 import Types
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.view.View.*
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -16,7 +15,6 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.lucasdonato.pokemon_api.R
-import com.lucasdonato.pokemon_api.data.model.Pokemon
 import com.lucasdonato.pokemon_api.data.model.Results
 import com.lucasdonato.pokemon_api.mechanism.EXTRA_ID
 import com.lucasdonato.pokemon_api.mechanism.extensions.safeValue
@@ -26,14 +24,8 @@ import com.lucasdonato.pokemon_api.presentation.details.presenter.DetailsPresent
 import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.include_card_image_description.*
 import kotlinx.android.synthetic.main.include_description.*
-import kotlinx.android.synthetic.main.include_description.view.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
-import java.math.RoundingMode
-import java.text.DecimalFormat
-import java.text.NumberFormat
-import java.util.*
-import kotlin.math.round
 
 class PokemonDetailsActivity : AppCompatActivity() {
 
@@ -57,20 +49,6 @@ class PokemonDetailsActivity : AppCompatActivity() {
 
     private fun clickListeners() {
         back.setOnClickListener { finish() }
-
-        var isClick = false
-
-        like_button.setOnClickListener {
-            isClick = !isClick
-
-            if (isClick) {
-                like_button.background =
-                    ContextCompat.getDrawable(applicationContext, R.drawable.ic_heart)
-            } else {
-                like_button.background =
-                    ContextCompat.getDrawable(applicationContext, R.drawable.ic_disable)
-            }
-        }
     }
 
     private fun receiveData() {
@@ -111,27 +89,8 @@ class PokemonDetailsActivity : AppCompatActivity() {
                         name.text = it.name?.capitalize()
                         height.text = getString(R.string.pokemon_height, safeValue(it.height))
                         weight.text = getString(R.string.pokemon_weight, safeValue(it.weight))
-
-
-                        ///TODO : REFATORAR TUDO ISSO
-                        val typeList = mutableListOf<String>()
-                        it.types?.map { it -> typeList.addAll(listOf(it.type.name)) }
-                        type.text = typeList[0].capitalize()
-                        if (it.types?.size!! > 1) {
-                            type_two.text = typeList[1].capitalize()
-                        } else {
-                            type_two.visibility = INVISIBLE
-                        }
-
-                        ///TODO : REFATORAR TUDO ISSO
-                        val abilitiesList = mutableListOf<String>()
-                        it.abilities?.map { it -> abilitiesList.addAll(listOf(it.ability.name)) }
-                        abilities_1.text = abilitiesList[0].capitalize()
-                        if (it.abilities?.size!! > 1) {
-                            abilities_2.text = abilitiesList[1].capitalize()
-                        } else {
-                            abilities_2.visibility = INVISIBLE
-                        }
+                        type(it.types)
+                        abilities(it.abilities)
                     }
                 }
                 Status.ERROR -> setupErrorToast()
@@ -139,6 +98,29 @@ class PokemonDetailsActivity : AppCompatActivity() {
                 else -> setupErrorToast()
             }
         })
+    }
+
+
+    private fun type(types: List<Types>?) {
+        val typeList = mutableListOf<String>()
+        types?.map { it -> typeList.addAll(listOf(it.type.name)) }
+        type.text = typeList[0].capitalize()
+        if (types?.size!! > 1) {
+            type_two.text = typeList[1].capitalize()
+        } else {
+            type_two.visibility = INVISIBLE
+        }
+    }
+
+    private fun abilities(abilities: List<Abilities>?) {
+        val abilitiesList = mutableListOf<String>()
+        abilities?.map { it -> abilitiesList.addAll(listOf(it.ability.name)) }
+        abilities_1.text = abilitiesList[0].capitalize()
+        if (abilities?.size!! > 1) {
+            abilities_2.text = abilitiesList[1].capitalize()
+        } else {
+            abilities_2.visibility = INVISIBLE
+        }
     }
 
     private fun setupErrorToast() {

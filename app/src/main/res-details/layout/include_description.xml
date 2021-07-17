@@ -25,16 +25,6 @@
             android:orientation="vertical"
             app:layout_constraintGuide_end="@dimen/guide_line_default" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/like_button"
-            android:layout_width="@dimen/ultra_margin"
-            android:layout_height="@dimen/ultra_margin"
-            android:layout_margin="@dimen/default_margin"
-            android:background="@drawable/ic_disable"
-            app:layout_constraintBottom_toBottomOf="@+id/name"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-            app:layout_constraintTop_toTopOf="@+id/name" />
-
         <TextView
             android:id="@+id/name"
             style="@style/pixel"
@@ -43,7 +33,7 @@
             android:layout_margin="@dimen/small_margin"
             android:textSize="@dimen/x_large_size"
             app:layout_constraintBottom_toTopOf="@+id/type"
-            app:layout_constraintEnd_toStartOf="@+id/like_button"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="PICHACU" />
