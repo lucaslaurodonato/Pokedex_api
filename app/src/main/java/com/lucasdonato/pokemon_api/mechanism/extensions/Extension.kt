@@ -32,7 +32,7 @@ fun Activity.toast(message: String) = Toast.makeText(this, message, Toast.LENGTH
 
 fun View.toast(message: String) = Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 
-fun safeValue(convert: Int?): String {
+fun convertValue(convert: Int?): String {
     convert?.let {
         return try {
             val value = ((it.toDouble()) / 10)

@@ -14,7 +14,6 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/loader"
         android:layout_gravity="bottom"
-
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/diglett_loading" />

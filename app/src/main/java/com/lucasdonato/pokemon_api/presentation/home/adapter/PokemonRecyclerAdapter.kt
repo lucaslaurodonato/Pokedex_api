@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -13,7 +12,6 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.lucasdonato.pokemon_api.R
-import com.lucasdonato.pokemon_api.data.model.Pokemon
 import com.lucasdonato.pokemon_api.data.model.Results
 import com.lucasdonato.pokemon_api.presentation.base.adapter.BaseRecyclerAdapter
 import kotlinx.android.synthetic.main.view_pokemon_list.view.*
@@ -67,10 +65,8 @@ class PokemonRecyclerAdapter : BaseRecyclerAdapter<Results, PokemonRecyclerAdapt
                             }
                         }).into(image_pokemon)
                 }
-
             }
         }
-
     }
 
     override fun validateDate() = false

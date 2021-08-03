@@ -67,7 +67,7 @@ class HomeActivity : AppCompatActivity() {
         presenter.getListLiveData.observe(this, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
-                    loader.visibility = View.GONE
+                    loader.visibility = GONE
                     it.data?.let {
                         showRecyclerBack()
                         adapterList.data = it.toMutableList()

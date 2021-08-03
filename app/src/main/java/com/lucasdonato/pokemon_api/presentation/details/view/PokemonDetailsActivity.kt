@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View.*
+import android.widget.ImageView
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -15,9 +16,10 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.lucasdonato.pokemon_api.R
+import com.lucasdonato.pokemon_api.data.model.Pokemon
 import com.lucasdonato.pokemon_api.data.model.Results
 import com.lucasdonato.pokemon_api.mechanism.EXTRA_ID
-import com.lucasdonato.pokemon_api.mechanism.extensions.safeValue
+import com.lucasdonato.pokemon_api.mechanism.extensions.convertValue
 import com.lucasdonato.pokemon_api.mechanism.extensions.toast
 import com.lucasdonato.pokemon_api.mechanism.livedata.Status
 import com.lucasdonato.pokemon_api.presentation.details.presenter.DetailsPresenter
@@ -42,9 +44,9 @@ class PokemonDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
-        receiveData()
-        setupObserver()
         clickListeners()
+        pokemonData = intent?.getSerializableExtra(EXTRA_ID) as Results
+        receiveData()
     }
 
     private fun clickListeners() {
@@ -52,54 +54,47 @@ class PokemonDetailsActivity : AppCompatActivity() {
     }
 
     private fun receiveData() {
-        pokemonData = (intent?.getSerializableExtra(EXTRA_ID) as Results?)!!
-        pokemonData.number?.let { presenter.getPokemonDetails(it) }
         pokemonData.also {
-            it.imageUrl.let { photoUrl ->
-                Glide.with(this).load(photoUrl)
-                    .listener(object : RequestListener<Drawable> {
-                        override fun onLoadFailed(
-                            e: GlideException?, model: Any?,
-                            target: Target<Drawable>?, isFirstResource: Boolean
-                        ): Boolean {
-                            image_pokemon.setImageResource(R.drawable.ic_close_x)
-                            image_progress.visibility = GONE
-                            return false
-                        }
-
-                        override fun onResourceReady(
-                            resource: Drawable?, model: Any?,
-                            target: Target<Drawable>?, dataSource: DataSource?,
-                            isFirstResource: Boolean
-                        ): Boolean {
-                            image_progress.visibility = GONE
-                            return false
-                        }
-                    }).into(image_pokemon)
-            }
+            it.number?.let { number -> presenter.getPokemonDetails(number) }
+            it.imageUrl?.let { image -> presenter.getImageInGlide(image, this, image_pokemon) }
         }
+        setupObserver()
     }
 
     private fun setupObserver() {
         presenter.getListLiveData.observe(this, Observer {
             when (it.status) {
-                Status.SUCCESS -> {
-                    loader.visibility = GONE
-                    it.data?.let {
-                        name.text = it.name?.capitalize()
-                        height.text = getString(R.string.pokemon_height, safeValue(it.height))
-                        weight.text = getString(R.string.pokemon_weight, safeValue(it.weight))
-                        type(it.types)
-                        abilities(it.abilities)
-                    }
-                }
-                Status.ERROR -> setupErrorToast()
                 Status.LOADING -> loader.visibility = VISIBLE
-                else -> setupErrorToast()
+                Status.SUCCESS -> setupView(it.data)
+                Status.ERROR -> showErrorToast()
+                else -> showErrorToast()
+            }
+        })
+        presenter.image.observe(this, Observer {
+            when (it.status) {
+                Status.LOADING -> image_progress.visibility = VISIBLE
+                Status.ERROR -> errorImage()
+                Status.SUCCESS -> image_progress.visibility = GONE
+                else -> errorImage()
             }
         })
     }
 
+    private fun setupView(pokemon: Pokemon?){
+        loader.visibility = GONE
+        pokemon?.let {
+            name.text = it.name?.capitalize()
+            height.text = getString(R.string.pokemon_height, convertValue(it.height))
+            weight.text = getString(R.string.pokemon_weight, convertValue(it.weight))
+            type(it.types)
+            abilities(it.abilities)
+        }
+    }
+
+    private fun errorImage() {
+        image_progress.visibility = GONE
+        image_pokemon.setImageResource(R.drawable.pikachu_surprised)
+    }
 
     private fun type(types: List<Types>?) {
         val typeList = mutableListOf<String>()
@@ -123,7 +118,7 @@ class PokemonDetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupErrorToast() {
+    private fun showErrorToast() {
         loader.visibility = GONE
         toast(getString(R.string.error_generic))
     }
