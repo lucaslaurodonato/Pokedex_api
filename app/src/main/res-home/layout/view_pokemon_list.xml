@@ -54,8 +54,8 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_pokemon"
             android:layout_width="@dimen/match_constraints"
-            android:layout_height="@dimen/card_apod"
-            android:scaleType="center"
+            android:layout_height="@dimen/card_home"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"

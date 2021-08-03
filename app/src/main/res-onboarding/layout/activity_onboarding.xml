@@ -23,7 +23,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/pokeman_logo"
         android:layout_width="@dimen/match_constraints"
-        android:layout_height="@dimen/card_apod"
+        android:layout_height="@dimen/card_home"
         android:src="@drawable/logo_pokemon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

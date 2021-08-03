@@ -22,7 +22,10 @@ import com.lucasdonato.pokemon_api.mechanism.EXTRA_ID
 import com.lucasdonato.pokemon_api.mechanism.extensions.convertValue
 import com.lucasdonato.pokemon_api.mechanism.extensions.toast
 import com.lucasdonato.pokemon_api.mechanism.livedata.Status
+import com.lucasdonato.pokemon_api.presentation.details.adapter.AbilitiesRecyclerAdapter
+import com.lucasdonato.pokemon_api.presentation.details.adapter.TypeRecyclerAdapter
 import com.lucasdonato.pokemon_api.presentation.details.presenter.DetailsPresenter
+import com.lucasdonato.pokemon_api.presentation.home.adapter.PokemonRecyclerAdapter
 import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.include_card_image_description.*
 import kotlinx.android.synthetic.main.include_description.*
@@ -38,6 +41,8 @@ class PokemonDetailsActivity : AppCompatActivity() {
             }
     }
 
+    private val abilitiesList: AbilitiesRecyclerAdapter by lazy { AbilitiesRecyclerAdapter() }
+    private val typeList: TypeRecyclerAdapter by lazy { TypeRecyclerAdapter() }
     private val presenter: DetailsPresenter by inject { parametersOf(this) }
     private lateinit var pokemonData: Results
 
@@ -80,14 +85,14 @@ class PokemonDetailsActivity : AppCompatActivity() {
         })
     }
 
-    private fun setupView(pokemon: Pokemon?){
+    private fun setupView(pokemon: Pokemon?) {
         loader.visibility = GONE
         pokemon?.let {
             name.text = it.name?.capitalize()
             height.text = getString(R.string.pokemon_height, convertValue(it.height))
             weight.text = getString(R.string.pokemon_weight, convertValue(it.weight))
-            type(it.types)
-            abilities(it.abilities)
+            it.types?.let { types -> type(types) }
+            it.abilities?.let { abilities -> abilities(abilities) }
         }
     }
 
@@ -96,25 +101,17 @@ class PokemonDetailsActivity : AppCompatActivity() {
         image_pokemon.setImageResource(R.drawable.pikachu_surprised)
     }
 
-    private fun type(types: List<Types>?) {
-        val typeList = mutableListOf<String>()
-        types?.map { it -> typeList.addAll(listOf(it.type.name)) }
-        type.text = typeList[0].capitalize()
-        if (types?.size!! > 1) {
-            type_two.text = typeList[1].capitalize()
-        } else {
-            type_two.visibility = INVISIBLE
+    private fun type(types: List<Types>) {
+        typeList.data = types.toMutableList()
+        type_recycler.apply {
+            adapter = typeList
         }
     }
 
-    private fun abilities(abilities: List<Abilities>?) {
-        val abilitiesList = mutableListOf<String>()
-        abilities?.map { it -> abilitiesList.addAll(listOf(it.ability.name)) }
-        abilities_1.text = abilitiesList[0].capitalize()
-        if (abilities?.size!! > 1) {
-            abilities_2.text = abilitiesList[1].capitalize()
-        } else {
-            abilities_2.visibility = INVISIBLE
+    private fun abilities(abilities: List<Abilities>) {
+        abilitiesList.data = abilities.toMutableList()
+        abilities_recycler.apply {
+            adapter = abilitiesList
         }
     }
 

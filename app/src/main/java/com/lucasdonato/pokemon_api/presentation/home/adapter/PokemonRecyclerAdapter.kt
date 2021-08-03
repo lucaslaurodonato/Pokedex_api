@@ -69,6 +69,4 @@ class PokemonRecyclerAdapter : BaseRecyclerAdapter<Results, PokemonRecyclerAdapt
         }
     }
 
-    override fun validateDate() = false
-
 }

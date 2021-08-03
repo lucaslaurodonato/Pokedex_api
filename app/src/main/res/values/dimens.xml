@@ -30,10 +30,11 @@
     <dimen name="loader">200dp</dimen>
 
     <!--Card Recycler-->
-    <dimen name="card_apod">200dp</dimen>
     <dimen name="pokedex_background">400dp</dimen>
 
     <!--Card Recycler-->
     <dimen name="card_detail_image">300dp</dimen>
+    <dimen name="card_home">200dp</dimen>
+    <dimen name="text_type_recycler">40dp</dimen>
 
 </resources>

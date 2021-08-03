@@ -10,6 +10,7 @@ import android.view.View.VISIBLE
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lucasdonato.pokemon_api.R
+import com.lucasdonato.pokemon_api.data.model.Results
 import com.lucasdonato.pokemon_api.mechanism.currency.PaginationListener
 import com.lucasdonato.pokemon_api.mechanism.livedata.Status
 import com.lucasdonato.pokemon_api.presentation.details.view.PokemonDetailsActivity
@@ -27,9 +28,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private val presenter: HomePresenter by inject { parametersOf(this) }
-    private val adapterList: PokemonRecyclerAdapter by lazy {
-        PokemonRecyclerAdapter()
-    }
+    private val adapterList: PokemonRecyclerAdapter by lazy { PokemonRecyclerAdapter() }
     private var limitAdd: Int = 20
     private var offSet: Int = 0
 
@@ -45,9 +44,6 @@ class HomeActivity : AppCompatActivity() {
         pokemon_recycler.apply {
             adapter = adapterList
             isFocusable = false
-            adapterList.onItemClickListener = {
-                startActivity(PokemonDetailsActivity.getStartIntent(context, it))
-            }
 
             addOnScrollListener(object :
                 PaginationListener(layoutManager as LinearLayoutManager, limitAdd) {
@@ -56,28 +52,32 @@ class HomeActivity : AppCompatActivity() {
                     presenter.getList(limitAdd, offSet)
                 }
 
-                override val isLoading: Boolean
-                    get() = loader.visibility == View.VISIBLE
-
+                override val isLoading: Boolean get() = loader.visibility == VISIBLE
             })
+
+            adapterList.onItemClickListener = {
+                startActivity(PokemonDetailsActivity.getStartIntent(context, it))
+            }
         }
     }
 
     private fun setupObserver() {
         presenter.getListLiveData.observe(this, Observer {
             when (it.status) {
-                Status.SUCCESS -> {
-                    loader.visibility = GONE
-                    it.data?.let {
-                        showRecyclerBack()
-                        adapterList.data = it.toMutableList()
-                    }
-                }
-                Status.ERROR -> setupErrorToast()
                 Status.LOADING -> loader.visibility = VISIBLE
-                else -> setupErrorToast()
+                Status.SUCCESS -> it.data?.let { data -> setupSuccess(data) }
+                Status.ERROR -> setupEmptyState()
+                else -> setupEmptyState()
             }
         })
+    }
+
+    private fun setupSuccess(results: List<Results>) {
+        loader.visibility = GONE
+        results.let {
+            showRecyclerBack()
+            adapterList.data = it.toMutableList()
+        }
     }
 
     private fun showRecyclerBack() {
@@ -86,7 +86,7 @@ class HomeActivity : AppCompatActivity() {
         group_home.visibility = VISIBLE
     }
 
-    private fun setupErrorToast() {
+    private fun setupEmptyState() {
         loader.visibility = GONE
 
         empty_state.visibility = VISIBLE

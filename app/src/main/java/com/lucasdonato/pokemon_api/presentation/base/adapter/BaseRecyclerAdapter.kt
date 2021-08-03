@@ -26,8 +26,6 @@ abstract class BaseRecyclerAdapter<V, K : RecyclerView.ViewHolder> : RecyclerVie
 
     abstract override fun onBindViewHolder(k: K, position: Int)
 
-    abstract fun validateDate(): Boolean
-
     override fun getItemCount(): Int {
         return mData.size
     }
