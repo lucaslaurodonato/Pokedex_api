@@ -32,6 +32,11 @@ fun Activity.toast(message: String) = Toast.makeText(this, message, Toast.LENGTH
 
 fun View.toast(message: String) = Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 
+fun formattedNumber(number:Int?) : String {
+    val formattedNumber = number.toString().padStart(3, '0')
+    return "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/$formattedNumber.png"
+}
+
 fun convertValue(convert: Int?): String {
     convert?.let {
         return try {
