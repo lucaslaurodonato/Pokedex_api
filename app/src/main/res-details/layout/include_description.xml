@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/small_margin"
             android:textSize="@dimen/x_large_size"
+            android:gravity="center"
             app:layout_constraintBottom_toTopOf="@+id/type_recycler"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
@@ -40,17 +41,19 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/type_recycler"
-            android:layout_width="@dimen/match_constraints"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:orientation="horizontal"
+            android:overScrollMode="never"
             android:layout_margin="@dimen/small_margin"
             android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:nestedScrollingEnabled="false"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
             app:layout_constraintTop_toBottomOf="@+id/name"
-            tools:itemCount="2"
+            tools:itemCount="3"
             tools:listitem="@layout/type_recycler" />
 
         <TextView
@@ -83,6 +86,8 @@
             android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:orientation="vertical"
+            android:overScrollMode="never"
+            android:nestedScrollingEnabled="false"
             android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"

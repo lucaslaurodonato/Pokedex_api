@@ -2,10 +2,14 @@ package com.lucasdonato.pokemon_api.mechanism.extensions
 
 import android.app.Activity
 import android.graphics.Paint
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.DrawableRes
+import com.lucasdonato.pokemon_api.R
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
@@ -51,4 +55,33 @@ fun convertValue(convert: Int?): String {
         return "0"
     }
 }
+
+fun getTypePokemon(type: String) : Int {
+    when (type){
+        "normal" -> return R.drawable.type_normal
+        "fighting" -> return R.drawable.type_fighting
+        "flying" -> return R.drawable.type_flying
+        "poison" -> return R.drawable.type_poison
+        "ground" -> return R.drawable.type_ground
+        "rock" ->  return R.drawable.type_rock
+        "bug" -> return R.drawable.type_bug
+        "ghost" -> return R.drawable.type_ghost
+        "steel" -> return R.drawable.type_steel
+        "fire" -> return R.drawable.type_fire
+        "water" -> return R.drawable.type_water
+        "grass" -> return R.drawable.type_grass
+        "electric" -> return R.drawable.type_electric
+        "psychic" -> return R.drawable.type_psychic
+        "ice" -> return R.drawable.type_ice
+        "dragon" -> return R.drawable.type_dragon
+        "dark" -> return R.drawable.type_dark
+        "fairy" -> return R.drawable.type_fairy
+        "unknown" -> return R.drawable.type_normal
+        "shadow" -> return R.drawable.type_ghost
+        else -> return R.drawable.type_normal
+    }
+}
+
+
+
 

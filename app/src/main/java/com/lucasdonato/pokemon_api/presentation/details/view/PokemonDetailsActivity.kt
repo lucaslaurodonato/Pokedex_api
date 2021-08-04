@@ -105,6 +105,7 @@ class PokemonDetailsActivity : AppCompatActivity() {
         typeList.data = types.toMutableList()
         type_recycler.apply {
             adapter = typeList
+            isFocusable = false
         }
     }
 
@@ -112,6 +113,7 @@ class PokemonDetailsActivity : AppCompatActivity() {
         abilitiesList.data = abilities.toMutableList()
         abilities_recycler.apply {
             adapter = abilitiesList
+            isFocusable = false
         }
     }
 

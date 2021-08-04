@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.lucasdonato.pokemon_api.R
+import com.lucasdonato.pokemon_api.mechanism.extensions.getTypePokemon
 import com.lucasdonato.pokemon_api.presentation.base.adapter.BaseRecyclerAdapter
-import kotlinx.android.synthetic.main.abilities_recycler.view.*
+import kotlinx.android.synthetic.main.type_recycler.view.*
 
 class TypeRecyclerAdapter : BaseRecyclerAdapter<Types, TypeRecyclerAdapter.ViewHolder>() {
 
@@ -26,7 +27,7 @@ class TypeRecyclerAdapter : BaseRecyclerAdapter<Types, TypeRecyclerAdapter.ViewH
 
         fun bind(types: Types, position: Int) {
             itemView.apply {
-                abilities_recycler_text.text = types.type.name.capitalize()
+                type_recycler_image.setImageResource(getTypePokemon(types.type.name))
             }
         }
     }
