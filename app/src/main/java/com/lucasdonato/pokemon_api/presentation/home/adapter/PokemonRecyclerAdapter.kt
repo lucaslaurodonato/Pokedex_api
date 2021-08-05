@@ -41,15 +41,14 @@ class PokemonRecyclerAdapter : BaseRecyclerAdapter<Results, PokemonRecyclerAdapt
 
             itemView.apply {
 
-                container.setOnClickListener {
-                    onItemClickListener?.invoke(pokemon)
-                }
-
+                name_pokemon.text = pokemon.name?.capitalize()
+                container.setBackgroundResource(R.drawable.shape_home_background)
                 setupImageWithGlide(pokemon.imageUrl, context)
+                container.setOnClickListener { onItemClickListener?.invoke(pokemon) }
             }
         }
 
-        private fun setupImageWithGlide(imageUrl: String?, context : Context){
+        private fun setupImageWithGlide(imageUrl: String?, context: Context) {
             itemView.apply {
                 imageUrl.let { photoUrl ->
                     Glide.with(context).load(photoUrl)
@@ -78,7 +77,5 @@ class PokemonRecyclerAdapter : BaseRecyclerAdapter<Results, PokemonRecyclerAdapt
             }
         }
     }
-
-
 
 }

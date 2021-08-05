@@ -2,4 +2,6 @@
 
     <string name="home_pokemon_phrase">gotta catch \'em all!</string>
 
+    <string name="home_search_text">Pesquisar...</string>
+
 </resources>

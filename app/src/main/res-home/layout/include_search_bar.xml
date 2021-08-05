@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/search_closed_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/open_search_button"
+            android:layout_width="@dimen/search_bar_home_icon"
+            android:layout_height="@dimen/search_bar_home_icon"
+            android:layout_margin="@dimen/ultra_margin"
+            android:background="@drawable/ic_search_pixel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/search_open_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
+        android:background="@drawable/shape_search_home_background"
+        android:visibility="invisible">
+
+        <View
+            android:id="@+id/close_search_button"
+            android:layout_width="@dimen/search_bar_home_icon"
+            android:layout_height="@dimen/search_bar_home_icon"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/default_margin"
+            android:background="@drawable/ic_close_x" />
+
+        <EditText
+            android:id="@+id/search_input_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_toStartOf="@id/execute_search_button"
+            android:layout_toEndOf="@id/close_search_button"
+            android:hint="@string/home_search_text"
+            android:imeOptions="actionDone"
+            android:inputType="text" />
+
+        <View
+            android:id="@+id/execute_search_button"
+            android:layout_width="@dimen/search_bar_home_icon"
+            android:layout_height="@dimen/search_bar_home_icon"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:background="@drawable/ic_send" />
+
+    </RelativeLayout>
+</FrameLayout>

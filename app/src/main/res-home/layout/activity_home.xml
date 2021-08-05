@@ -11,27 +11,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="visible"
-        app:constraint_referenced_ids="logo_pokemon,favorites_button,home_phrase" />
+        app:constraint_referenced_ids="logo_pokemon,home_phrase,search_toolbar," />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/logo_pokemon"
         android:layout_width="@dimen/match_constraints"
-        android:layout_height="@dimen/card_home"
+        android:layout_height="@dimen/image_lottie_home"
+        app:layout_constraintBottom_toTopOf="@+id/home_phrase"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_toolbar"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/pikachu_onboarding" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/favorites_button"
-        android:layout_width="@dimen/ultra_margin"
-        android:layout_height="@dimen/ultra_margin"
-        android:layout_margin="@dimen/ultra_margin"
-        android:src="@drawable/ic_heart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/home_phrase"
@@ -41,23 +33,29 @@
         android:gravity="center"
         android:text="@string/home_pokemon_phrase"
         android:textAllCaps="true"
-        app:layout_constraintBottom_toBottomOf="@+id/logo_pokemon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_pokemon" />
+
+    <com.lucasdonato.pokemon_api.mechanism.search_bar.SearchViewAnimation
+        android:id="@+id/search_toolbar"
+        android:layout_width="@dimen/match_constraints"
+        android:layout_height="@dimen/toolbar_default_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pokemon_recycler"
         android:layout_width="@dimen/match_constraints"
         android:layout_height="@dimen/match_constraints"
-        android:layout_marginTop="@dimen/default_margin"
         android:clipToPadding="false"
         android:orientation="vertical"
         android:visibility="visible"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo_pokemon"
+        app:layout_constraintTop_toBottomOf="@+id/home_phrase"
         tools:listitem="@layout/view_pokemon_list" />
 
     <include
