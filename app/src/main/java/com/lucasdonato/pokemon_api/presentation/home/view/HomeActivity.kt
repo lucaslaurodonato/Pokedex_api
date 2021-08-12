@@ -11,11 +11,13 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lucasdonato.pokemon_api.R
+import com.lucasdonato.pokemon_api.data.model.Pokemon
 import com.lucasdonato.pokemon_api.data.model.Results
 import com.lucasdonato.pokemon_api.mechanism.currency.PaginationListener
 import com.lucasdonato.pokemon_api.mechanism.extensions.get
 import com.lucasdonato.pokemon_api.mechanism.extensions.toast
 import com.lucasdonato.pokemon_api.mechanism.livedata.Status
+import com.lucasdonato.pokemon_api.presentation.AppApplication.Companion.context
 import com.lucasdonato.pokemon_api.presentation.details.view.PokemonDetailsActivity
 import com.lucasdonato.pokemon_api.presentation.home.adapter.PokemonRecyclerAdapter
 import com.lucasdonato.pokemon_api.presentation.home.presenter.HomePresenter
@@ -34,23 +36,14 @@ class HomeActivity : AppCompatActivity() {
     private val presenter: HomePresenter by inject { parametersOf(this) }
     private val adapterList: PokemonRecyclerAdapter by lazy { PokemonRecyclerAdapter() }
     private var limitAdd: Int = 20
-    private var offSet: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        presenter.getList(limitAdd, offSet)
+        presenter.getList(limitAdd)
         setupObserver()
         setupRecyclerView()
-
-        setupClickListeners()
-    }
-
-    private fun setupClickListeners(){
-        execute_search_button.setOnClickListener {
-            val teste = search_input_text.get()
-            toast(teste)
-        }
+        setupSearchPokemon()
     }
 
     private fun setupObserver() {
@@ -62,6 +55,43 @@ class HomeActivity : AppCompatActivity() {
                 else -> setupEmptyState()
             }
         })
+        presenter.searchPokemon.observe(this, Observer {
+            when (it.status) {
+                Status.LOADING -> loader.visibility = VISIBLE
+                Status.SUCCESS -> successSearchPokemon(it.data)
+                Status.ERROR -> setupSearchError()
+                else -> setupSearchError()
+            }
+        })
+    }
+
+    private fun setupRecyclerView() {
+        pokemon_recycler.apply {
+            adapter = adapterList
+            isFocusable = false
+            layoutManager = GridLayoutManager(context, 2)
+
+            addOnScrollListener(object :
+                PaginationListener(layoutManager as LinearLayoutManager, limitAdd) {
+                override fun loadMoreItems() {
+                    limitAdd += 20
+                    presenter.getList(limitAdd)
+                }
+
+                override val isLoading: Boolean get() = loader.visibility == VISIBLE
+            })
+
+            adapterList.onItemClickListener = {
+                startActivity(PokemonDetailsActivity.getStartIntent(context, it, null))
+            }
+        }
+    }
+
+    private fun setupSearchPokemon() {
+        execute_search_button.setOnClickListener {
+            val pokemon = search_input_text.get()
+            presenter.getSearchPokemon(pokemon)
+        }
     }
 
     private fun setupSuccess(results: List<Results>) {
@@ -78,37 +108,23 @@ class HomeActivity : AppCompatActivity() {
         group_home.visibility = VISIBLE
     }
 
-    private fun setupRecyclerView() {
-        pokemon_recycler.apply {
-            adapter = adapterList
-            isFocusable = false
-            layoutManager = GridLayoutManager(context, 2)
+    private fun successSearchPokemon(pokemon: Pokemon?) {
+        loader.visibility = GONE
+        startActivity(PokemonDetailsActivity.getStartIntent(this, null, pokemon))
+    }
 
-            addOnScrollListener(object :
-                PaginationListener(layoutManager as LinearLayoutManager, limitAdd) {
-                override fun loadMoreItems() {
-                    limitAdd += 20
-                    presenter.getList(limitAdd, offSet)
-                }
-
-                override val isLoading: Boolean get() = loader.visibility == VISIBLE
-            })
-
-            adapterList.onItemClickListener = {
-                startActivity(PokemonDetailsActivity.getStartIntent(context, it))
-            }
-        }
+    private fun setupSearchError() {
+        loader.visibility = GONE
+        toast(getString(R.string.home_search_error_text))
     }
 
     private fun setupEmptyState() {
         loader.visibility = GONE
-
         empty_state.visibility = VISIBLE
         pokemon_recycler.visibility = GONE
         group_home.visibility = GONE
-
         try_again.setOnClickListener {
-            presenter.getList(limitAdd, offSet)
+            presenter.getList(limitAdd)
         }
     }
 

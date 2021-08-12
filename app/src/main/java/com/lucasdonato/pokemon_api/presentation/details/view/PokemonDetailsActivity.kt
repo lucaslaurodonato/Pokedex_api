@@ -4,28 +4,23 @@ import Abilities
 import Types
 import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.Drawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View.*
-import android.widget.ImageView
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import com.lucasdonato.pokemon_api.R
 import com.lucasdonato.pokemon_api.data.model.Pokemon
 import com.lucasdonato.pokemon_api.data.model.Results
-import com.lucasdonato.pokemon_api.mechanism.EXTRA_ID
+import com.lucasdonato.pokemon_api.mechanism.EXTRA_POKEMON
+import com.lucasdonato.pokemon_api.mechanism.EXTRA_RESULTS
 import com.lucasdonato.pokemon_api.mechanism.extensions.convertValue
 import com.lucasdonato.pokemon_api.mechanism.extensions.toast
 import com.lucasdonato.pokemon_api.mechanism.livedata.Status
+import com.lucasdonato.pokemon_api.presentation.AppApplication.Companion.context
 import com.lucasdonato.pokemon_api.presentation.details.adapter.AbilitiesRecyclerAdapter
 import com.lucasdonato.pokemon_api.presentation.details.adapter.TypeRecyclerAdapter
 import com.lucasdonato.pokemon_api.presentation.details.presenter.DetailsPresenter
-import com.lucasdonato.pokemon_api.presentation.home.adapter.PokemonRecyclerAdapter
 import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.include_card_image_description.*
 import kotlinx.android.synthetic.main.include_description.*
@@ -35,23 +30,27 @@ import org.koin.core.parameter.parametersOf
 class PokemonDetailsActivity : AppCompatActivity() {
 
     companion object {
-        fun getStartIntent(context: Context, pokemon: Results? = null): Intent =
+        fun getStartIntent(context: Context, results: Results?, pokemon: Pokemon?): Intent =
             Intent(context, PokemonDetailsActivity::class.java).apply {
-                putExtra(EXTRA_ID, pokemon)
+                putExtra(EXTRA_RESULTS, results)
+                putExtra(EXTRA_POKEMON, pokemon)
             }
     }
 
     private val abilitiesList: AbilitiesRecyclerAdapter by lazy { AbilitiesRecyclerAdapter() }
     private val typeList: TypeRecyclerAdapter by lazy { TypeRecyclerAdapter() }
     private val presenter: DetailsPresenter by inject { parametersOf(this) }
-    private lateinit var pokemonData: Results
+    private var resultsData: Results? = null
+    private var pokemonData: Pokemon? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
         clickListeners()
-        pokemonData = intent?.getSerializableExtra(EXTRA_ID) as Results
+        resultsData = intent?.getSerializableExtra(EXTRA_RESULTS) as Results?
+        pokemonData = intent?.getSerializableExtra(EXTRA_POKEMON) as Pokemon?
         receiveData()
+        setupSearchPokemon()
     }
 
     private fun clickListeners() {
@@ -59,9 +58,9 @@ class PokemonDetailsActivity : AppCompatActivity() {
     }
 
     private fun receiveData() {
-        pokemonData.also {
+        resultsData?.let {
             it.number?.let { number -> presenter.getPokemonDetails(number) }
-            it.imageUrl?.let { image -> presenter.getImageInGlide(image, this, image_pokemon) }
+            presenter.getImageInGlide(it.imageUrl, this, image_pokemon)
         }
         setupObserver()
     }
@@ -83,6 +82,13 @@ class PokemonDetailsActivity : AppCompatActivity() {
                 else -> errorImage()
             }
         })
+    }
+
+    private fun setupSearchPokemon() {
+        pokemonData?.let {
+            setupView(it)
+            presenter.getImageInGlide(it.sprites?.front_shiny, this, image_pokemon)
+        }
     }
 
     private fun setupView(pokemon: Pokemon?) {

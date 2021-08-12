@@ -7,7 +7,7 @@ import kotlinx.coroutines.withContext
 
 class PokemonUseCase(private val pokemonRepository: PokemonRepository) {
 
-    suspend fun getPokemonData(limit: Int,offSet: Int) = withContext(Dispatchers.IO) {
+    suspend fun getPokemonData(limit: Int, offSet: Int) = withContext(Dispatchers.IO) {
         runSuspend {
             pokemonRepository.getPokemonDate(limit, offSet)
         }
@@ -16,6 +16,12 @@ class PokemonUseCase(private val pokemonRepository: PokemonRepository) {
     suspend fun getPokemonDetails(id: Int) = withContext(Dispatchers.IO) {
         runSuspend {
             pokemonRepository.getPokemonDetails(id)
+        }
+    }
+
+    suspend fun getSearchPokemon(name: String) = withContext(Dispatchers.IO) {
+        runSuspend {
+            pokemonRepository.getSearchPokemon(name)
         }
     }
 

@@ -8,4 +8,6 @@ class PokemonDataSource(private val webService: WebService) {
 
     fun getPokemon(id: Int) = webService.getPokemon(id)
 
+    fun getSearchPokemon(name: String) = webService.getSearchPokemon(name)
+
 }

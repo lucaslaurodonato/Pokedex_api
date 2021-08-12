@@ -10,14 +10,22 @@ import kotlinx.coroutines.withContext
 
 class PokemonRepository(private val pokemonDataSource: PokemonDataSource) {
 
-    suspend fun getPokemonDate(limit: Int,offSet: Int) = withContext(Dispatchers.IO) {
+    suspend fun getPokemonDate(limit: Int, offSet: Int) = withContext(Dispatchers.IO) {
         (performRequest(
-            pokemonDataSource.getPokemonList(limit, offSet).execute(), true) as PokemonList?)
+            pokemonDataSource.getPokemonList(limit, offSet).execute(), true
+        ) as PokemonList?)
     }
 
     suspend fun getPokemonDetails(id: Int) = withContext(Dispatchers.IO) {
         (performRequest(
-            pokemonDataSource.getPokemon(id).execute(), true) as Pokemon?)
+            pokemonDataSource.getPokemon(id).execute(), true
+        ) as Pokemon?)
+    }
+
+    suspend fun getSearchPokemon(name: String) = withContext(Dispatchers.IO) {
+        (performRequest(
+            pokemonDataSource.getSearchPokemon(name).execute(), true
+        ) as Pokemon?)
     }
 
 }
