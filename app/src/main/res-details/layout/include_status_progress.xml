@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/hp"
+        style="@style/pixel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:gravity="center"
+        android:text="@string/pokemon_hp"
+        android:textSize="@dimen/x_small_size"
+        app:layout_constraintEnd_toStartOf="@+id/progress_hp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.skydoves.progressview.ProgressView
+        android:id="@+id/progress_hp"
+        android:layout_width="@dimen/match_constraints"
+        android:layout_height="@dimen/progress_status_height"
+        android:layout_marginEnd="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/hp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/hp"
+        app:layout_constraintTop_toTopOf="@+id/hp"
+        app:progressView_colorBackground="@color/white"
+        app:progressView_colorProgress="@color/colorPrimary"
+        app:progressView_labelColorInner="@color/white"
+        app:progressView_labelColorOuter="@color/black"
+        app:progressView_labelSize="@dimen/x_small_size"
+        app:progressView_max="@dimen/progress_status"
+        app:progressView_radius="@dimen/progress_status_radius" />
+
+    <TextView
+        android:id="@+id/atk"
+        style="@style/pixel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:gravity="center"
+        android:text="@string/pokemon_atk"
+        android:textSize="@dimen/x_small_size"
+        app:layout_constraintEnd_toStartOf="@+id/progress_atk"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hp" />
+
+    <com.skydoves.progressview.ProgressView
+        android:id="@+id/progress_atk"
+        android:layout_width="@dimen/match_constraints"
+        android:layout_height="@dimen/progress_status_height"
+        android:layout_marginEnd="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/atk"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/atk"
+        app:layout_constraintTop_toTopOf="@+id/atk"
+        app:progressView_colorBackground="@color/white"
+        app:progressView_colorProgress="@color/colorPrimary"
+        app:progressView_labelColorInner="@color/white"
+        app:progressView_labelColorOuter="@color/black"
+        app:progressView_labelSize="@dimen/x_small_size"
+        app:progressView_max="@dimen/progress_status"
+        app:progressView_radius="@dimen/progress_status_radius" />
+
+    <TextView
+        android:id="@+id/def"
+        style="@style/pixel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:gravity="center"
+        android:text="@string/pokemon_def"
+        android:textSize="@dimen/x_small_size"
+        app:layout_constraintEnd_toStartOf="@+id/progress_def"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/atk" />
+
+    <com.skydoves.progressview.ProgressView
+        android:id="@+id/progress_def"
+        android:layout_width="@dimen/match_constraints"
+        android:layout_height="@dimen/progress_status_height"
+        android:layout_marginEnd="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/def"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/def"
+        app:layout_constraintTop_toTopOf="@+id/def"
+        app:progressView_colorBackground="@color/white"
+        app:progressView_colorProgress="@color/colorPrimary"
+        app:progressView_labelColorInner="@color/white"
+        app:progressView_labelColorOuter="@color/black"
+        app:progressView_labelSize="@dimen/x_small_size"
+        app:progressView_max="@dimen/progress_status"
+        app:progressView_radius="@dimen/progress_status_radius" />
+
+    <TextView
+        android:id="@+id/spa"
+        style="@style/pixel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:gravity="center"
+        android:text="@string/pokemon_spa"
+        android:textSize="@dimen/x_small_size"
+        app:layout_constraintEnd_toStartOf="@+id/progress_spa"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/def" />
+
+    <com.skydoves.progressview.ProgressView
+        android:id="@+id/progress_spa"
+        android:layout_width="@dimen/match_constraints"
+        android:layout_height="@dimen/progress_status_height"
+        android:layout_marginEnd="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/spa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spa"
+        app:layout_constraintTop_toTopOf="@+id/spa"
+        app:progressView_colorBackground="@color/white"
+        app:progressView_colorProgress="@color/colorPrimary"
+        app:progressView_labelColorInner="@color/white"
+        app:progressView_labelColorOuter="@color/black"
+        app:progressView_labelSize="@dimen/x_small_size"
+        app:progressView_max="@dimen/progress_status"
+        app:progressView_radius="@dimen/progress_status_radius" />
+
+    <TextView
+        android:id="@+id/spd"
+        style="@style/pixel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:gravity="center"
+        android:text="@string/pokemon_spd"
+        android:textSize="@dimen/x_small_size"
+        app:layout_constraintEnd_toStartOf="@+id/progress_spd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spa" />
+
+    <com.skydoves.progressview.ProgressView
+        android:id="@+id/progress_spd"
+        android:layout_width="@dimen/match_constraints"
+        android:layout_height="@dimen/progress_status_height"
+        android:layout_marginEnd="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/spd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spd"
+        app:layout_constraintTop_toTopOf="@+id/spd"
+        app:progressView_colorBackground="@color/white"
+        app:progressView_colorProgress="@color/colorPrimary"
+        app:progressView_labelColorInner="@color/white"
+        app:progressView_labelColorOuter="@color/black"
+        app:progressView_labelSize="@dimen/x_small_size"
+        app:progressView_max="@dimen/progress_status"
+        app:progressView_radius="@dimen/progress_status_radius" />
+
+    <TextView
+        android:id="@+id/spe"
+        style="@style/pixel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:gravity="center"
+        android:text="@string/pokemon_spe"
+        android:textSize="@dimen/x_small_size"
+        app:layout_constraintEnd_toStartOf="@+id/progress_spe"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spd" />
+
+    <com.skydoves.progressview.ProgressView
+        android:id="@+id/progress_spe"
+        android:layout_width="@dimen/match_constraints"
+        android:layout_height="@dimen/progress_status_height"
+        android:layout_marginEnd="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/spe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spe"
+        app:layout_constraintTop_toTopOf="@+id/spe"
+        app:progressView_colorBackground="@color/white"
+        app:progressView_colorProgress="@color/colorPrimary"
+        app:progressView_labelColorInner="@color/white"
+        app:progressView_labelColorOuter="@color/black"
+        app:progressView_labelSize="@dimen/x_small_size"
+        app:progressView_max="@dimen/progress_status"
+        app:progressView_radius="@dimen/progress_status_radius" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

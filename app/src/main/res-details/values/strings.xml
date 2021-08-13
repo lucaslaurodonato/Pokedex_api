@@ -1,7 +1,18 @@
 <resources>
 
     <string name="pokemon_type">Nome: %i</string>
-    <string name="pokemon_height">%s m</string>
-    <string name="pokemon_weight">%s kg</string>
+    <string name="pokemon_height">%s M</string>
+    <string name="pokemon_weight">%s KG</string>
+
+    <string name="pokemon_weight_text">Weight</string>
+    <string name="pokemon_height_text">Height</string>
+
+    <string name="pokemon_hp">HPT</string>
+    <string name="pokemon_atk">ATK</string>
+    <string name="pokemon_def">DEF</string>
+    <string name="pokemon_spa">SPA</string>
+    <string name="pokemon_spd">SPD</string>
+    <string name="pokemon_spe">SPE</string>
+    <string name="pokemon_status_progress">%i/300</string>
 
 </resources>

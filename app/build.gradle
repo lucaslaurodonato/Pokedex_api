@@ -85,6 +85,9 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$jUnitExt"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
 
+    // progress view
+    implementation "com.github.skydoves:progressview:$progressViewVersion"
+
     // Stetho
     implementation "com.facebook.stetho:stetho:$stethoVersion"
     implementation "com.facebook.stetho:stetho-okhttp3:$stethoVersion"

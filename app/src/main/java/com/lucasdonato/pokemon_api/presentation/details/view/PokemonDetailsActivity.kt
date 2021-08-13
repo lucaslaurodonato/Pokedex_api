@@ -1,12 +1,9 @@
 package com.lucasdonato.pokemon_api.presentation.details.view
 
-import Abilities
 import Types
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.lucasdonato.pokemon_api.R
@@ -19,8 +16,7 @@ import com.lucasdonato.pokemon_api.mechanism.extensions.gone
 import com.lucasdonato.pokemon_api.mechanism.extensions.toast
 import com.lucasdonato.pokemon_api.mechanism.extensions.visible
 import com.lucasdonato.pokemon_api.mechanism.livedata.Status
-import com.lucasdonato.pokemon_api.presentation.AppApplication.Companion.context
-import com.lucasdonato.pokemon_api.presentation.details.adapter.AbilitiesRecyclerAdapter
+import com.lucasdonato.pokemon_api.presentation.details.adapter.StatsRecyclerAdapter
 import com.lucasdonato.pokemon_api.presentation.details.adapter.TypeRecyclerAdapter
 import com.lucasdonato.pokemon_api.presentation.details.presenter.DetailsPresenter
 import kotlinx.android.synthetic.main.activity_details.*
@@ -39,7 +35,6 @@ class PokemonDetailsActivity : AppCompatActivity() {
             }
     }
 
-    private val abilitiesList: AbilitiesRecyclerAdapter by lazy { AbilitiesRecyclerAdapter() }
     private val typeList: TypeRecyclerAdapter by lazy { TypeRecyclerAdapter() }
     private val presenter: DetailsPresenter by inject { parametersOf(this) }
     private var resultsData: Results? = null
@@ -49,22 +44,33 @@ class PokemonDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
         clickListeners()
+        receiveData()
+        setupDataResults()
+        setupSearchPokemon()
+    }
+
+    private fun receiveData(){
         resultsData = intent?.getSerializableExtra(EXTRA_RESULTS) as Results?
         pokemonData = intent?.getSerializableExtra(EXTRA_POKEMON) as Pokemon?
-        receiveData()
-        setupSearchPokemon()
     }
 
     private fun clickListeners() {
         back.setOnClickListener { finish() }
     }
 
-    private fun receiveData() {
+    private fun setupDataResults() {
         resultsData?.let {
             it.number?.let { number -> presenter.getPokemonDetails(number) }
             presenter.getImageInGlide(it.imageUrl, this, image_pokemon)
         }
         setupObserver()
+    }
+
+    private fun setupSearchPokemon() {
+        pokemonData?.let {
+            setupView(it)
+            presenter.getImageInGlide(it.sprites?.front_shiny, this, image_pokemon)
+        }
     }
 
     private fun setupObserver() {
@@ -86,13 +92,6 @@ class PokemonDetailsActivity : AppCompatActivity() {
         })
     }
 
-    private fun setupSearchPokemon() {
-        pokemonData?.let {
-            setupView(it)
-            presenter.getImageInGlide(it.sprites?.front_shiny, this, image_pokemon)
-        }
-    }
-
     private fun setupView(pokemon: Pokemon?) {
         loader.gone()
         pokemon?.let {
@@ -100,7 +99,6 @@ class PokemonDetailsActivity : AppCompatActivity() {
             height.text = getString(R.string.pokemon_height, convertValue(it.height))
             weight.text = getString(R.string.pokemon_weight, convertValue(it.weight))
             it.types?.let { types -> type(types) }
-            it.abilities?.let { abilities -> abilities(abilities) }
         }
     }
 
@@ -109,25 +107,17 @@ class PokemonDetailsActivity : AppCompatActivity() {
         image_pokemon.setImageResource(R.drawable.pikachu_surprised)
     }
 
+    private fun showErrorToast() {
+        loader.gone()
+        toast(getString(R.string.error_generic))
+    }
+
     private fun type(types: List<Types>) {
         typeList.data = types.toMutableList()
         type_recycler.apply {
             adapter = typeList
             isFocusable = false
         }
-    }
-
-    private fun abilities(abilities: List<Abilities>) {
-        abilitiesList.data = abilities.toMutableList()
-        abilities_recycler.apply {
-            adapter = abilitiesList
-            isFocusable = false
-        }
-    }
-
-    private fun showErrorToast() {
-        loader.gone()
-        toast(getString(R.string.error_generic))
     }
 
 }

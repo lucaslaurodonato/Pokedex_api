@@ -31,8 +31,8 @@
             android:layout_width="@dimen/match_constraints"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/small_margin"
-            android:textSize="@dimen/x_large_size"
             android:gravity="center"
+            android:textSize="@dimen/x_small_size"
             app:layout_constraintBottom_toTopOf="@+id/type_recycler"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
@@ -43,13 +43,13 @@
             android:id="@+id/type_recycler"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_margin"
             android:clipToPadding="false"
+            android:nestedScrollingEnabled="false"
             android:orientation="horizontal"
             android:overScrollMode="never"
-            android:layout_margin="@dimen/small_margin"
             android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:nestedScrollingEnabled="false"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
             app:layout_constraintTop_toBottomOf="@+id/name"
@@ -62,8 +62,10 @@
             android:layout_width="@dimen/match_constraints"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/small_margin"
+            android:gravity="center"
             android:textSize="@dimen/x_small_size"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintEnd_toStartOf="@+id/weight"
+            app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
             app:layout_constraintTop_toBottomOf="@+id/type_recycler"
             tools:text="PICHACU" />
@@ -74,27 +76,54 @@
             android:layout_width="@dimen/match_constraints"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/small_margin"
+            android:gravity="center"
             android:textSize="@dimen/x_small_size"
+            app:layout_constraintBottom_toBottomOf="@+id/height"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/height"
+            app:layout_constraintTop_toTopOf="@+id/height"
+            tools:text="PICHACU" />
+
+        <TextView
+            android:id="@+id/height_text"
+            style="@style/pixel"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_margin"
+            android:gravity="center"
+            android:text="@string/pokemon_height_text"
+            android:textSize="@dimen/x_very_small_size"
+            app:layout_constraintEnd_toStartOf="@+id/weight_text"
+            app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
             app:layout_constraintTop_toBottomOf="@+id/height"
             tools:text="PICHACU" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/abilities_recycler"
+        <TextView
+            android:id="@+id/weight_text"
+            style="@style/pixel"
             android:layout_width="@dimen/match_constraints"
             android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:orientation="vertical"
-            android:overScrollMode="never"
-            android:nestedScrollingEnabled="false"
-            android:visibility="visible"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_margin="@dimen/small_margin"
+            android:gravity="center"
+            android:text="@string/pokemon_weight_text"
+            android:textSize="@dimen/x_very_small_size"
+            app:layout_constraintBottom_toBottomOf="@+id/height_text"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/height_text"
+            app:layout_constraintTop_toTopOf="@+id/height_text"
+            tools:text="PICHACU" />
+
+        <include
+            layout="@layout/include_status_progress"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
-            app:layout_constraintTop_toBottomOf="@+id/weight"
-            tools:itemCount="2"
-            tools:listitem="@layout/abilities_recycler" />
+            app:layout_constraintTop_toBottomOf="@+id/height_text" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

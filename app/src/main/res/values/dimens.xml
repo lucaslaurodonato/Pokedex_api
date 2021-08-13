@@ -43,4 +43,9 @@
     <!--Card Recycler-->
     <dimen name="search_bar_home_icon">24dp</dimen>
 
+    <!--Progress status-->
+    <dimen name="progress_status_height">18dp</dimen>
+    <dimen name="progress_status_radius">12dp</dimen>
+    <dimen name="progress_status">300</dimen>
+
 </resources>

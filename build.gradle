@@ -54,6 +54,9 @@ ext {
     // Debug
     stethoVersion = "1.5.1"
 
+    // progress view
+    progressViewVersion = '1.1.1'
+
 }
 
 task clean(type: Delete) {
