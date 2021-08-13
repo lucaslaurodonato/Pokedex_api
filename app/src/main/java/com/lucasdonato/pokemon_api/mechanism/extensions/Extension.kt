@@ -4,8 +4,7 @@ import android.app.Activity
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -42,6 +41,10 @@ fun View.gone(){
 
 fun View.visible(){
     visibility = VISIBLE
+}
+
+fun View.invisible(){
+    visibility = INVISIBLE
 }
 
 fun Activity.toast(message: String) = Toast.makeText(this, message, Toast.LENGTH_LONG).show()

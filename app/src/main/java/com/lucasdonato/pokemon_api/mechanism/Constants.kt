@@ -9,4 +9,6 @@ const val APPLICATION_JSON = "application/json"
 const val EXTRA_RESULTS = "EXTRA_RESULTS"
 const val EXTRA_POKEMON = "EXTRA_POKEMON"
 
+const val QUANTITY = 20
+
 const val SPLASH_DISPLAY_TIME = 2000

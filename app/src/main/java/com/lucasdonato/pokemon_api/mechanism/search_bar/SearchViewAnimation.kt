@@ -8,6 +8,9 @@ import android.view.ViewAnimationUtils
 import android.widget.FrameLayout
 import com.lucasdonato.pokemon_api.R
 import com.lucasdonato.pokemon_api.mechanism.extensions.get
+import com.lucasdonato.pokemon_api.mechanism.extensions.gone
+import com.lucasdonato.pokemon_api.mechanism.extensions.invisible
+import com.lucasdonato.pokemon_api.mechanism.extensions.visible
 import kotlinx.android.synthetic.main.include_search_bar.view.*
 
 class SearchViewAnimation(context: Context, attrs: AttributeSet) : FrameLayout(context, attrs) {
@@ -19,9 +22,9 @@ class SearchViewAnimation(context: Context, attrs: AttributeSet) : FrameLayout(c
     }
 
     private fun openSearch() {
-        search_open_view.visibility = VISIBLE
-        open_search_button.visibility = GONE
-        open_search_text.visibility = GONE
+        search_open_view.visible()
+        open_search_button.gone()
+        open_search_text.gone()
         val circularReveal = ViewAnimationUtils.createCircularReveal(
             search_open_view,
             (open_search_button.right + open_search_button.left) / 2,
@@ -49,9 +52,9 @@ class SearchViewAnimation(context: Context, attrs: AttributeSet) : FrameLayout(c
             override fun onAnimationCancel(animation: Animator?) = Unit
             override fun onAnimationStart(animation: Animator?) = Unit
             override fun onAnimationEnd(animation: Animator?) {
-                search_open_view.visibility = INVISIBLE
-                open_search_button.visibility = VISIBLE
-                open_search_text.visibility = VISIBLE
+                search_open_view.invisible()
+                open_search_button.visible()
+                open_search_text.visible()
                 circularConceal.removeAllListeners()
             }
         })

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.lucasdonato.pokemon_api.R
 import com.lucasdonato.pokemon_api.data.model.Pokemon
 import com.lucasdonato.pokemon_api.data.model.Results
+import com.lucasdonato.pokemon_api.mechanism.QUANTITY
 import com.lucasdonato.pokemon_api.mechanism.currency.PaginationListener
 import com.lucasdonato.pokemon_api.mechanism.extensions.*
 import com.lucasdonato.pokemon_api.mechanism.livedata.Status
@@ -72,9 +73,9 @@ class HomeActivity : AppCompatActivity() {
                 startActivity(PokemonDetailsActivity.getStartIntent(context, it, null))
             }
             addOnScrollListener(object :
-                PaginationListener(layoutManager as LinearLayoutManager, 20) {
+                PaginationListener(layoutManager as LinearLayoutManager, QUANTITY) {
                 override fun loadMoreItems() {
-                    presenter.limit += 20
+                    presenter.limit += QUANTITY
                     presenter.getList()
                 }
 
