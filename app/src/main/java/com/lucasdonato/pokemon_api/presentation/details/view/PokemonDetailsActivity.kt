@@ -1,5 +1,6 @@
 package com.lucasdonato.pokemon_api.presentation.details.view
 
+import Stats
 import Types
 import android.content.Context
 import android.content.Intent
@@ -9,19 +10,18 @@ import androidx.lifecycle.Observer
 import com.lucasdonato.pokemon_api.R
 import com.lucasdonato.pokemon_api.data.model.Pokemon
 import com.lucasdonato.pokemon_api.data.model.Results
-import com.lucasdonato.pokemon_api.mechanism.EXTRA_POKEMON
-import com.lucasdonato.pokemon_api.mechanism.EXTRA_RESULTS
+import com.lucasdonato.pokemon_api.mechanism.*
 import com.lucasdonato.pokemon_api.mechanism.extensions.convertValue
 import com.lucasdonato.pokemon_api.mechanism.extensions.gone
 import com.lucasdonato.pokemon_api.mechanism.extensions.toast
 import com.lucasdonato.pokemon_api.mechanism.extensions.visible
 import com.lucasdonato.pokemon_api.mechanism.livedata.Status
-import com.lucasdonato.pokemon_api.presentation.details.adapter.StatsRecyclerAdapter
 import com.lucasdonato.pokemon_api.presentation.details.adapter.TypeRecyclerAdapter
 import com.lucasdonato.pokemon_api.presentation.details.presenter.DetailsPresenter
 import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.include_card_image_description.*
 import kotlinx.android.synthetic.main.include_description.*
+import kotlinx.android.synthetic.main.include_status_progress.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -49,7 +49,7 @@ class PokemonDetailsActivity : AppCompatActivity() {
         setupSearchPokemon()
     }
 
-    private fun receiveData(){
+    private fun receiveData() {
         resultsData = intent?.getSerializableExtra(EXTRA_RESULTS) as Results?
         pokemonData = intent?.getSerializableExtra(EXTRA_POKEMON) as Pokemon?
     }
@@ -99,6 +99,7 @@ class PokemonDetailsActivity : AppCompatActivity() {
             height.text = getString(R.string.pokemon_height, convertValue(it.height))
             weight.text = getString(R.string.pokemon_weight, convertValue(it.weight))
             it.types?.let { types -> type(types) }
+            it.stats?.let { stats -> stats(stats) }
         }
     }
 
@@ -118,6 +119,21 @@ class PokemonDetailsActivity : AppCompatActivity() {
             adapter = typeList
             isFocusable = false
         }
+    }
+
+    private fun stats(stats: List<Stats>) {
+        progress_hp.progress = stats[HP].base_stat.toFloat()
+        progress_hp.labelText = getString(R.string.pokemon_status_progress, stats[HP].base_stat)
+        progress_atk.progress = stats[ATK].base_stat.toFloat()
+        progress_atk.labelText = getString(R.string.pokemon_status_progress, stats[ATK].base_stat)
+        progress_def.progress = stats[DEF].base_stat.toFloat()
+        progress_def.labelText = getString(R.string.pokemon_status_progress, stats[DEF].base_stat)
+        progress_spa.progress = stats[SPA].base_stat.toFloat()
+        progress_spa.labelText = getString(R.string.pokemon_status_progress, stats[SPA].base_stat)
+        progress_spd.progress = stats[SPD].base_stat.toFloat()
+        progress_spd.labelText = getString(R.string.pokemon_status_progress, stats[SPD].base_stat)
+        progress_spe.progress = stats[SPE].base_stat.toFloat()
+        progress_spe.labelText = getString(R.string.pokemon_status_progress, stats[SPE].base_stat)
     }
 
 }

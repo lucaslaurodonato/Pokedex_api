@@ -46,6 +46,8 @@
     <!--Progress status-->
     <dimen name="progress_status_height">18dp</dimen>
     <dimen name="progress_status_radius">12dp</dimen>
+    <dimen name="progress_status_text_size">9sp</dimen>
+    <dimen name="progress_status_text_space">8dp</dimen>
     <dimen name="progress_status">300</dimen>
 
 </resources>
