@@ -1,7 +1,8 @@
 <resources>
 
     <string name="home_pokemon_phrase">gotta catch \'em all!</string>
-    <string name="home_search_text">Pesquisar...</string>
-    <string name="home_search_error_text">Ops... não encontramos esse pokemon</string>
+    <string name="home_search_text">Search</string>
+    <string name="home_search_text_hint">Search…</string>
+    <string name="home_search_error_text">Ops… não encontramos esse pokemon</string>
 
 </resources>

@@ -15,7 +15,9 @@ import com.lucasdonato.pokemon_api.data.model.Results
 import com.lucasdonato.pokemon_api.mechanism.EXTRA_POKEMON
 import com.lucasdonato.pokemon_api.mechanism.EXTRA_RESULTS
 import com.lucasdonato.pokemon_api.mechanism.extensions.convertValue
+import com.lucasdonato.pokemon_api.mechanism.extensions.gone
 import com.lucasdonato.pokemon_api.mechanism.extensions.toast
+import com.lucasdonato.pokemon_api.mechanism.extensions.visible
 import com.lucasdonato.pokemon_api.mechanism.livedata.Status
 import com.lucasdonato.pokemon_api.presentation.AppApplication.Companion.context
 import com.lucasdonato.pokemon_api.presentation.details.adapter.AbilitiesRecyclerAdapter
@@ -68,7 +70,7 @@ class PokemonDetailsActivity : AppCompatActivity() {
     private fun setupObserver() {
         presenter.getListLiveData.observe(this, Observer {
             when (it.status) {
-                Status.LOADING -> loader.visibility = VISIBLE
+                Status.LOADING -> loader.visible()
                 Status.SUCCESS -> setupView(it.data)
                 Status.ERROR -> showErrorToast()
                 else -> showErrorToast()
@@ -76,9 +78,9 @@ class PokemonDetailsActivity : AppCompatActivity() {
         })
         presenter.image.observe(this, Observer {
             when (it.status) {
-                Status.LOADING -> image_progress.visibility = VISIBLE
+                Status.LOADING -> image_progress.visible()
                 Status.ERROR -> errorImage()
-                Status.SUCCESS -> image_progress.visibility = GONE
+                Status.SUCCESS -> image_progress.gone()
                 else -> errorImage()
             }
         })
@@ -92,7 +94,7 @@ class PokemonDetailsActivity : AppCompatActivity() {
     }
 
     private fun setupView(pokemon: Pokemon?) {
-        loader.visibility = GONE
+        loader.gone()
         pokemon?.let {
             name.text = it.name?.capitalize()
             height.text = getString(R.string.pokemon_height, convertValue(it.height))
@@ -103,7 +105,7 @@ class PokemonDetailsActivity : AppCompatActivity() {
     }
 
     private fun errorImage() {
-        image_progress.visibility = GONE
+        image_progress.gone()
         image_pokemon.setImageResource(R.drawable.pikachu_surprised)
     }
 
@@ -124,7 +126,7 @@ class PokemonDetailsActivity : AppCompatActivity() {
     }
 
     private fun showErrorToast() {
-        loader.visibility = GONE
+        loader.gone()
         toast(getString(R.string.error_generic))
     }
 

@@ -4,6 +4,8 @@ import android.app.Activity
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -31,6 +33,16 @@ fun TextView.setTextUnderline() {
 fun Date.toImageName() = "${SimpleDateFormat("yyyyMMddHHmm", Locale.getDefault()).format(this)}.png"
 
 fun EditText.get() = text.toString().trim()
+
+fun EditText.validate() = text.toString().isNotEmpty()
+
+fun View.gone(){
+    visibility = GONE
+}
+
+fun View.visible(){
+    visibility = VISIBLE
+}
 
 fun Activity.toast(message: String) = Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 

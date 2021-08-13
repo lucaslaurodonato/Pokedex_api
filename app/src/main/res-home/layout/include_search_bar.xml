@@ -20,6 +20,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/open_search_text"
+            style="@style/pixel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_search_text"
+            android:textSize="@dimen/x_very_small_size"
+            app:layout_constraintEnd_toEndOf="@+id/open_search_button"
+            app:layout_constraintStart_toStartOf="@+id/open_search_button"
+            app:layout_constraintTop_toBottomOf="@+id/open_search_button" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <RelativeLayout
@@ -48,9 +59,11 @@
             android:layout_marginEnd="@dimen/default_margin"
             android:layout_toStartOf="@id/execute_search_button"
             android:layout_toEndOf="@id/close_search_button"
-            android:hint="@string/home_search_text"
+            android:fontFamily="@font/pokemon_classic"
+            android:hint="@string/home_search_text_hint"
             android:imeOptions="actionDone"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textSize="@dimen/x_small_size" />
 
         <View
             android:id="@+id/execute_search_button"
