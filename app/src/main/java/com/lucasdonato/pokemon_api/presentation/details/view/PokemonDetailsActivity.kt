@@ -4,22 +4,23 @@ import Stats
 import Types
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.lifecycle.Observer
+import com.airbnb.lottie.utils.Utils
 import com.lucasdonato.pokemon_api.R
 import com.lucasdonato.pokemon_api.data.model.Pokemon
 import com.lucasdonato.pokemon_api.data.model.Results
 import com.lucasdonato.pokemon_api.mechanism.*
-import com.lucasdonato.pokemon_api.mechanism.extensions.convertValue
-import com.lucasdonato.pokemon_api.mechanism.extensions.gone
-import com.lucasdonato.pokemon_api.mechanism.extensions.toast
-import com.lucasdonato.pokemon_api.mechanism.extensions.visible
+import com.lucasdonato.pokemon_api.mechanism.extensions.*
 import com.lucasdonato.pokemon_api.mechanism.livedata.Status
 import com.lucasdonato.pokemon_api.presentation.details.adapter.TypeRecyclerAdapter
 import com.lucasdonato.pokemon_api.presentation.details.presenter.DetailsPresenter
 import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.include_card_image_description.*
+import kotlinx.android.synthetic.main.include_card_image_description.view.*
 import kotlinx.android.synthetic.main.include_description.*
 import kotlinx.android.synthetic.main.include_status_progress.*
 import org.koin.android.ext.android.inject
@@ -100,6 +101,10 @@ class PokemonDetailsActivity : AppCompatActivity() {
             weight.text = getString(R.string.pokemon_weight, convertValue(it.weight))
             it.types?.let { types -> type(types) }
             it.stats?.let { stats -> stats(stats) }
+            ///TODO : FAZER UM GRADIENTE CASO O POKEMON TENHA MAIS UM DE UM TIPO
+            it.types?.forEach {
+                image_background_card.setBackgroundResource(getTypeColor(it.type.name))
+            }
         }
     }
 
@@ -122,6 +127,7 @@ class PokemonDetailsActivity : AppCompatActivity() {
     }
 
     private fun stats(stats: List<Stats>) {
+        ///TODO: CRIAR UM ENUM PARA COLOCAR CADA UM EM SEU INDICE
         progress_hp.progress = stats[HP].base_stat.toFloat()
         progress_hp.labelText = getString(R.string.pokemon_status_progress, stats[HP].base_stat)
         progress_atk.progress = stats[ATK].base_stat.toFloat()

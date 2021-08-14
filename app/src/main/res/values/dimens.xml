@@ -34,7 +34,7 @@
     <dimen name="pokedex_background">400dp</dimen>
 
     <!--Card Recycler-->
-    <dimen name="card_detail_image">300dp</dimen>
+    <dimen name="card_detail_image">220dp</dimen>
     <dimen name="card_home">200dp</dimen>
     <dimen name="card_recycler_grid">150dp</dimen>
     <dimen name="image_lottie_home">150dp</dimen>
