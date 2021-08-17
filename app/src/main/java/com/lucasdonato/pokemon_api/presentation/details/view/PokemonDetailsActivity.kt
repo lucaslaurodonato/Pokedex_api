@@ -4,27 +4,26 @@ import Stats
 import Types
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.lifecycle.Observer
-import com.airbnb.lottie.utils.Utils
 import com.lucasdonato.pokemon_api.R
 import com.lucasdonato.pokemon_api.data.model.Pokemon
 import com.lucasdonato.pokemon_api.data.model.Results
 import com.lucasdonato.pokemon_api.mechanism.*
 import com.lucasdonato.pokemon_api.mechanism.extensions.*
 import com.lucasdonato.pokemon_api.mechanism.livedata.Status
+import com.lucasdonato.pokemon_api.mechanism.utils.GradientUtil
+import com.lucasdonato.pokemon_api.mechanism.utils.GradientUtil.Companion.getGradientColor
 import com.lucasdonato.pokemon_api.presentation.details.adapter.TypeRecyclerAdapter
 import com.lucasdonato.pokemon_api.presentation.details.presenter.DetailsPresenter
 import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.include_card_image_description.*
-import kotlinx.android.synthetic.main.include_card_image_description.view.*
 import kotlinx.android.synthetic.main.include_description.*
 import kotlinx.android.synthetic.main.include_status_progress.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
+
 
 class PokemonDetailsActivity : AppCompatActivity() {
 
@@ -38,6 +37,7 @@ class PokemonDetailsActivity : AppCompatActivity() {
 
     private val typeList: TypeRecyclerAdapter by lazy { TypeRecyclerAdapter() }
     private val presenter: DetailsPresenter by inject { parametersOf(this) }
+    private val gradientColors : MutableList<String> = mutableListOf()
     private var resultsData: Results? = null
     private var pokemonData: Pokemon? = null
 
@@ -101,11 +101,16 @@ class PokemonDetailsActivity : AppCompatActivity() {
             weight.text = getString(R.string.pokemon_weight, convertValue(it.weight))
             it.types?.let { types -> type(types) }
             it.stats?.let { stats -> stats(stats) }
-            ///TODO : FAZER UM GRADIENTE CASO O POKEMON TENHA MAIS UM DE UM TIPO
+
             it.types?.forEach {
-                image_background_card.setBackgroundResource(getTypeColor(it.type.name))
+                gradientColors.addAll(listOf(getGradientColor(it.type.name)))
+                setupBackgroundPokemonImage(it.type.name)
             }
         }
+    }
+    private fun setupBackgroundPokemonImage(type: String){
+        if(gradientColors.size >= 2) image_background_card.background = (GradientUtil.setBackgroundGradient(gradientColors))
+        else image_background_card.setBackgroundResource(getTypeColor(type))
     }
 
     private fun errorImage() {
