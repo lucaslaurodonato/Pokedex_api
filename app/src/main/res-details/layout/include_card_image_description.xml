@@ -2,10 +2,14 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:backgroundTint="@color/red">
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_background_card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:background="@color/yellow" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -30,12 +34,12 @@
             android:id="@+id/image_pokemon"
             android:layout_width="match_parent"
             android:layout_height="@dimen/card_detail_image"
-            android:scaleType="center"
+            android:scaleType="fitXY"
             app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline_top"
-            tools:background="@drawable/pikachu_surprised" />
+            tools:src="@drawable/pikachu_surprised" />
 
         <ProgressBar
             android:id="@+id/image_progress"
@@ -49,7 +53,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

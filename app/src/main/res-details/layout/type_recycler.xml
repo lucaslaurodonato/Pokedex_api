@@ -7,9 +7,8 @@
 
     <ImageView
         android:id="@+id/type_recycler_image"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -78,7 +78,6 @@ class HomeActivity : AppCompatActivity() {
                     presenter.limit += QUANTITY
                     presenter.getList()
                 }
-
                 override val isLoading: Boolean get() = loader.visibility == VISIBLE
             })
         }
