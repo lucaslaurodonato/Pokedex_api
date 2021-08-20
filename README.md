@@ -1,4 +1,8 @@
-<a target="_blank"><img src="https://user-images.githubusercontent.com/47648982/130158643-a5e2a01b-8315-4b44-b258-fcfac6f16c52.png" align="center" width="20%"></a>
+<a target="_blank"><img align="center" src="https://user-images.githubusercontent.com/47648982/130158643-a5e2a01b-8315-4b44-b258-fcfac6f16c52.png"  width="20%"></a>
+
+![kotlin](https://user-images.githubusercontent.com/47648982/130287500-39d07e83-3099-41d7-8dca-8145e482e3a6.png)
+![android 21](https://user-images.githubusercontent.com/47648982/130287501-218bc85c-d939-474b-a01b-c350211ff019.png)
+![google android](https://user-images.githubusercontent.com/47648982/130287502-abd52c06-6dc6-444c-adce-a3fbdb2fe7cc.png)
 
 ### **<h2>About</h2>**
 
@@ -6,7 +10,9 @@
 
 Application makes the paged listing of all pokemons, showing the attributes of each one.
 
-
+- [x] Paged list
+- [x] Pokemon Details
+- [ ] Favorite pokemons with room
 
 ### *API*.  
 - **Link. content**: (https://pokeapi.co/)
