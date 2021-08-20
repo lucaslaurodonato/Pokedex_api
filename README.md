@@ -1,10 +1,12 @@
 <a target="_blank"><img align="center" src="https://user-images.githubusercontent.com/47648982/130158643-a5e2a01b-8315-4b44-b258-fcfac6f16c52.png"  width="20%"></a>
 
-![kotlin](https://user-images.githubusercontent.com/47648982/130287500-39d07e83-3099-41d7-8dca-8145e482e3a6.png)
-![android 21](https://user-images.githubusercontent.com/47648982/130287501-218bc85c-d939-474b-a01b-c350211ff019.png)
+<img src="https://img.shields.io/badge/Kotlin-Android-green"></img>
 ![google android](https://user-images.githubusercontent.com/47648982/130287502-abd52c06-6dc6-444c-adce-a3fbdb2fe7cc.png)
+![android 21](https://user-images.githubusercontent.com/47648982/130287501-218bc85c-d939-474b-a01b-c350211ff019.png)
 
 ### **<h2>About</h2>**
+
+
 
 <p><a target="_blank" rel="noopener noreferrer" href="https://user-images.githubusercontent.com/47648982/130159775-36258f29-cd00-4715-ac2d-b95e0759db06.gif"><img src="https://user-images.githubusercontent.com/47648982/130159775-36258f29-cd00-4715-ac2d-b95e0759db06.gif" align="right" width="15%" style="max-width:100%;"></a></p>
 
