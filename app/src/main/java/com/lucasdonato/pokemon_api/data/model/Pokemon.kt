@@ -7,7 +7,6 @@ import Stats
 import Types
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
-import kotlin.random.Random
 
 data class Pokemon(
     @SerializedName("name") val name: String?,
@@ -18,8 +17,14 @@ data class Pokemon(
     @SerializedName("types") val types: List<Types>?,
     @SerializedName("sprites") val sprites: Sprites?,
     @SerializedName("abilities") val abilities: List<Abilities>?
-
 ) : Serializable
+
+
+
+
+
+
+
 
 
 

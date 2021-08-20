@@ -1,5 +1,4 @@
 package com.lucasdonato.pokemon_api.presentation.details.view
-
 import Stats
 import Types
 import android.content.Context
@@ -36,7 +35,7 @@ class PokemonDetailsActivity : AppCompatActivity() {
 
     private val typeList: TypeRecyclerAdapter by lazy { TypeRecyclerAdapter() }
     private val presenter: DetailsPresenter by inject { parametersOf(this) }
-    private val gradientColors : MutableList<String> = mutableListOf()
+    private val gradientColors: MutableList<String> = mutableListOf()
     private var resultsData: Results? = null
     private var pokemonData: Pokemon? = null
 
@@ -100,15 +99,16 @@ class PokemonDetailsActivity : AppCompatActivity() {
             weight.text = getString(R.string.pokemon_weight, convertValue(it.weight))
             it.types?.let { types -> type(types) }
             it.stats?.let { stats -> stats(stats) }
-
             it.types?.forEach {
                 gradientColors.addAll(listOf(getGradientColor(it.type.name)))
                 setupBackgroundPokemonImage(it.type.name)
             }
         }
     }
-    private fun setupBackgroundPokemonImage(type: String){
-        if(gradientColors.size >= 2) image_background_card.background = (GradientUtil.setBackgroundGradient(gradientColors))
+
+    private fun setupBackgroundPokemonImage(type: String) {
+        if (gradientColors.size >= 2) image_background_card.background =
+            (GradientUtil.setBackgroundGradient(gradientColors))
         else image_background_card.setBackgroundResource(getTypeColor(type))
     }
 
@@ -131,19 +131,31 @@ class PokemonDetailsActivity : AppCompatActivity() {
     }
 
     private fun stats(stats: List<Stats>) {
-        ///TODO: CRIAR UM ENUM PARA COLOCAR CADA UM EM SEU INDICE
-        progress_hp.progress = stats[HP].base_stat.toFloat()
-        progress_hp.labelText = getString(R.string.pokemon_status_progress, stats[HP].base_stat)
-        progress_atk.progress = stats[ATK].base_stat.toFloat()
-        progress_atk.labelText = getString(R.string.pokemon_status_progress, stats[ATK].base_stat)
-        progress_def.progress = stats[DEF].base_stat.toFloat()
-        progress_def.labelText = getString(R.string.pokemon_status_progress, stats[DEF].base_stat)
-        progress_spa.progress = stats[SPA].base_stat.toFloat()
-        progress_spa.labelText = getString(R.string.pokemon_status_progress, stats[SPA].base_stat)
-        progress_spd.progress = stats[SPD].base_stat.toFloat()
-        progress_spd.labelText = getString(R.string.pokemon_status_progress, stats[SPD].base_stat)
-        progress_spe.progress = stats[SPE].base_stat.toFloat()
-        progress_spe.labelText = getString(R.string.pokemon_status_progress, stats[SPE].base_stat)
+        stats.getOrNull(HP)?.let {
+            progress_hp.progress = it.base_stat.toFloat()
+            progress_hp.labelText = getString(R.string.pokemon_status_progress, it.base_stat)
+        }
+        stats.getOrNull(ATK)?.let {
+            progress_atk.progress = it.base_stat.toFloat()
+            progress_atk.labelText = getString(R.string.pokemon_status_progress, it.base_stat)
+        }
+        stats.getOrNull(DEF)?.let {
+            progress_def.progress = it.base_stat.toFloat()
+            progress_def.labelText = getString(R.string.pokemon_status_progress, it.base_stat)
+        }
+        stats.getOrNull(SPA)?.let {
+            progress_spa.progress = it.base_stat.toFloat()
+            progress_spa.labelText = getString(R.string.pokemon_status_progress, it.base_stat)
+        }
+        stats.getOrNull(SPD)?.let {
+            progress_spd.progress = it.base_stat.toFloat()
+            progress_spd.labelText = getString(R.string.pokemon_status_progress, it.base_stat)
+        }
+        stats.getOrNull(SPD)?.let {
+            progress_spe.progress = it.base_stat.toFloat()
+            progress_spe.labelText = getString(R.string.pokemon_status_progress, it.base_stat)
+        }
     }
 
 }
+

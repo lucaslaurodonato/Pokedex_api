@@ -25,7 +25,7 @@ class GradientUtil {
                 "bug" -> "#179A55"
                 "ghost" -> "#363069"
                 "steel" -> "#5C756D"
-                "fire" -> "#B22328"
+                "fire" -> "#DC143C"
                 "water" -> "#2648DC"
                 "grass" -> "#007C42"
                 "electric" -> "#E0E64B"
