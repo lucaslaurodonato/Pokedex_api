@@ -2,7 +2,7 @@ package com.lucasdonato.pokemon_api.mechanism.dependencies
 
 import com.lucasdonato.pokemon_api.data.remote.WebServiceClient
 import com.lucasdonato.pokemon_api.data.remote.dataSource.PokemonDataSource
-import com.lucasdonato.pokemon_api.data.repository.apod.PokemonRepository
+import com.lucasdonato.pokemon_api.data.repository.pokemon.PokemonRepository
 import com.lucasdonato.pokemon_api.data.useCase.PokemonUseCase
 import com.lucasdonato.pokemon_api.presentation.details.presenter.DetailsPresenter
 import com.lucasdonato.pokemon_api.presentation.home.presenter.HomePresenter

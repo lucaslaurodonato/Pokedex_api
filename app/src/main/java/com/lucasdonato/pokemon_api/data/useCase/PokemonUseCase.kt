@@ -1,6 +1,6 @@
 package com.lucasdonato.pokemon_api.data.useCase
 
-import com.lucasdonato.pokemon_api.data.repository.apod.PokemonRepository
+import com.lucasdonato.pokemon_api.data.repository.pokemon.PokemonRepository
 import com.lucasdonato.pokemon_api.domain.base.runSuspend
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

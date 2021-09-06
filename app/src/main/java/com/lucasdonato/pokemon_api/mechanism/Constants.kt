@@ -5,10 +5,11 @@ const val API_KEY = "DEMO_KEY"
 const val CONTENT_TYPE = "Content-Type"
 const val APPLICATION_JSON = "application/json"
 
-//Apod OBJECT
+//OBJECT
 const val EXTRA_RESULTS = "EXTRA_RESULTS"
 const val EXTRA_POKEMON = "EXTRA_POKEMON"
 
+//LIST POKEMON
 const val QUANTITY = 20
 
 ///INDEX FOR

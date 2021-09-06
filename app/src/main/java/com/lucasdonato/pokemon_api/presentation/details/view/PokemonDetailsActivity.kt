@@ -151,7 +151,7 @@ class PokemonDetailsActivity : AppCompatActivity() {
             progress_spd.progress = it.base_stat.toFloat()
             progress_spd.labelText = getString(R.string.pokemon_status_progress, it.base_stat)
         }
-        stats.getOrNull(SPD)?.let {
+        stats.getOrNull(SPE)?.let {
             progress_spe.progress = it.base_stat.toFloat()
             progress_spe.labelText = getString(R.string.pokemon_status_progress, it.base_stat)
         }
