@@ -1,8 +1,7 @@
-package com.lucasdonato.pokemon_api.data.repository.apod
+package com.lucasdonato.pokemon_api.data.repository.pokemon
 
 import com.lucasdonato.pokemon_api.data.model.Pokemon
 import com.lucasdonato.pokemon_api.data.model.PokemonList
-import com.lucasdonato.pokemon_api.data.model.Results
 import com.lucasdonato.pokemon_api.data.remote.dataSource.PokemonDataSource
 import com.lucasdonato.pokemon_api.data.repository.performRequest
 import kotlinx.coroutines.Dispatchers
