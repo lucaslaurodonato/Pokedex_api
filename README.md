@@ -14,7 +14,6 @@ Application makes the paged listing of all pokemons, showing the attributes of e
 
 - [x] Paged list
 - [x] Pokemon Details
-- [ ] Favorite pokemons with room
 
 ### *API*.  
 - **Link. content**: (https://pokeapi.co/)
