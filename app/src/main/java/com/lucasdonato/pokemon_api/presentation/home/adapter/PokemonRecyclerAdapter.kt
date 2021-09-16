@@ -15,6 +15,7 @@ import com.bumptech.glide.request.target.Target
 import com.lucasdonato.pokemon_api.R
 import com.lucasdonato.pokemon_api.data.model.Results
 import com.lucasdonato.pokemon_api.mechanism.extensions.formattedNumber
+import com.lucasdonato.pokemon_api.mechanism.utils.Utils
 import com.lucasdonato.pokemon_api.presentation.AppApplication.Companion.context
 import com.lucasdonato.pokemon_api.presentation.base.adapter.BaseRecyclerAdapter
 import kotlinx.android.synthetic.main.view_pokemon_list.view.*
@@ -43,39 +44,11 @@ class PokemonRecyclerAdapter : BaseRecyclerAdapter<Results, PokemonRecyclerAdapt
 
                 name_pokemon.text = pokemon.name?.capitalize()
                 container.setBackgroundResource(R.drawable.shape_home_background)
-                setupImageWithGlide(pokemon.imageUrl, context)
+                Utils.setImageUrl(context, pokemon.imageUrl, image_pokemon, image_progress)
                 container.setOnClickListener { onItemClickListener?.invoke(pokemon) }
             }
         }
 
-        private fun setupImageWithGlide(imageUrl: String?, context: Context) {
-            itemView.apply {
-                imageUrl.let { photoUrl ->
-                    Glide.with(context).load(photoUrl)
-                        .listener(object : RequestListener<Drawable> {
-                            override fun onLoadFailed(
-                                e: GlideException?, model: Any?,
-                                target: Target<Drawable>?, isFirstResource: Boolean
-                            ): Boolean {
-                                itemView.image_pokemon.setImageResource(R.drawable.pikachu_surprised)
-                                itemView.image_progress.visibility = GONE
-                                return false
-                            }
-
-                            override fun onResourceReady(
-                                resource: Drawable?,
-                                model: Any?,
-                                target: Target<Drawable>?,
-                                dataSource: DataSource?,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                itemView.image_progress.visibility = GONE
-                                return false
-                            }
-                        }).into(image_pokemon)
-                }
-            }
-        }
     }
 
 }

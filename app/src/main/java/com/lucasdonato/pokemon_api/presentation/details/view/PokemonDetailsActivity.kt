@@ -1,4 +1,5 @@
 package com.lucasdonato.pokemon_api.presentation.details.view
+
 import Stats
 import Types
 import android.content.Context
@@ -14,6 +15,7 @@ import com.lucasdonato.pokemon_api.mechanism.extensions.*
 import com.lucasdonato.pokemon_api.mechanism.livedata.Status
 import com.lucasdonato.pokemon_api.mechanism.utils.GradientUtil
 import com.lucasdonato.pokemon_api.mechanism.utils.GradientUtil.Companion.getGradientColor
+import com.lucasdonato.pokemon_api.mechanism.utils.Utils
 import com.lucasdonato.pokemon_api.presentation.details.adapter.TypeRecyclerAdapter
 import com.lucasdonato.pokemon_api.presentation.details.presenter.DetailsPresenter
 import kotlinx.android.synthetic.main.activity_details.*
@@ -60,7 +62,7 @@ class PokemonDetailsActivity : AppCompatActivity() {
     private fun setupDataResults() {
         resultsData?.let {
             it.number?.let { number -> presenter.getPokemonDetails(number) }
-            presenter.getImageInGlide(it.imageUrl, this, image_pokemon)
+            Utils.setImageUrl(this, it.imageUrl, image_pokemon, image_progress)
         }
         setupObserver()
     }
@@ -68,7 +70,7 @@ class PokemonDetailsActivity : AppCompatActivity() {
     private fun setupSearchPokemon() {
         pokemonData?.let {
             setupView(it)
-            presenter.getImageInGlide(it.sprites?.front_shiny, this, image_pokemon)
+            Utils.setImageUrl(this, it.sprites?.front_shiny, image_pokemon, image_progress)
         }
     }
 
