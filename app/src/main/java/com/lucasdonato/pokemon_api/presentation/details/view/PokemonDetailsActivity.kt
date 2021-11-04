@@ -160,9 +160,9 @@ class PokemonDetailsActivity : BaseActivity<ActivityDetailsBinding>(R.layout.act
                 getString(R.string.pokemon_status_progress, it.base_stat)
         }
         stats.getOrNull(SPD)?.let {
-            binding.includeDescription.includeStatusProgress.progressSpa.progress =
+            binding.includeDescription.includeStatusProgress.progressSpd.progress =
                 it.base_stat.toFloat()
-            binding.includeDescription.includeStatusProgress.progressSpa.labelText =
+            binding.includeDescription.includeStatusProgress.progressSpd.labelText =
                 getString(R.string.pokemon_status_progress, it.base_stat)
         }
         stats.getOrNull(SPE)?.let {
