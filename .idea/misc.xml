@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/PremierSoft/Desktop/Pokedex_api/app/src/main/res-details/layout/activity_details.xml" value="0.3546875" />
+        <entry key="..\:/Users/PremierSoft/Desktop/Pokedex_api/app/src/main/res-details/layout/include_card_image_description.xml" value="0.3546875" />
+        <entry key="..\:/Users/PremierSoft/Desktop/Pokedex_api/app/src/main/res-details/layout/include_description.xml" value="0.3546875" />
+        <entry key="..\:/Users/PremierSoft/Desktop/Pokedex_api/app/src/main/res-details/layout/include_status_progress.xml" value="0.3546875" />
+        <entry key="..\:/Users/PremierSoft/Desktop/Pokedex_api/app/src/main/res-details/layout/type_recycler.xml" value="0.22962962962962963" />
         <entry key="..\:/Users/PremierSoft/Desktop/Pokedex_api/app/src/main/res-home/layout/activity_home.xml" value="0.2935185185185185" />
         <entry key="..\:/Users/PremierSoft/Desktop/Pokedex_api/app/src/main/res-home/layout/include_search_bar.xml" value="0.14722222222222223" />
         <entry key="..\:/Users/PremierSoft/Desktop/Pokedex_api/app/src/main/res-home/layout/view_pokemon_list.xml" value="0.24351851851851852" />

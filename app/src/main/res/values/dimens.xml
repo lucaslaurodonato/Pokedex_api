@@ -39,6 +39,7 @@
     <dimen name="card_recycler_grid">150dp</dimen>
     <dimen name="image_lottie_home">150dp</dimen>
     <dimen name="text_type_recycler">40dp</dimen>
+    <dimen name="type_image_recycler">65dp</dimen>
 
     <!--Card Recycler-->
     <dimen name="search_bar_home_icon">24dp</dimen>

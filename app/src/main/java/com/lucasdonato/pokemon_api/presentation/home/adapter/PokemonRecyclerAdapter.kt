@@ -30,8 +30,7 @@ class PokemonRecyclerAdapter : BaseRecyclerAdapter<Results, PokemonRecyclerAdapt
         )
     }
 
-    inner class ViewHolder(binding: ViewPokemonListBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(binding: ViewPokemonListBinding) : RecyclerView.ViewHolder(binding.root) {
         private val name = binding.namePokemon
         private val container = binding.container
         private val imagePokemon = binding.imagePokemon
