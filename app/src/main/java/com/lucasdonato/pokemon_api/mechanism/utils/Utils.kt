@@ -11,10 +11,11 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.lucasdonato.pokemon_api.R
+import com.lucasdonato.pokemon_api.presentation.AppApplication.Companion.context
 
 object Utils {
 
-    fun setImageUrl(context: Context?, imageUrl:String?, imageView: ImageView,progressBar: ProgressBar ){
+    fun setImageUrl(imageUrl:String?, imageView: ImageView,progressBar: ProgressBar ){
         imageUrl.let { photoUrl ->
             context?.let {
                 Glide.with(it).load(photoUrl)

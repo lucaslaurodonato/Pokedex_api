@@ -62,7 +62,7 @@ class PokemonDetailsActivity : AppCompatActivity() {
     private fun setupDataResults() {
         resultsData?.let {
             it.number?.let { number -> presenter.getPokemonDetails(number) }
-            Utils.setImageUrl(this, it.imageUrl, image_pokemon, image_progress)
+            Utils.setImageUrl(it.imageUrl, image_pokemon, image_progress)
         }
         setupObserver()
     }
@@ -70,7 +70,7 @@ class PokemonDetailsActivity : AppCompatActivity() {
     private fun setupSearchPokemon() {
         pokemonData?.let {
             setupView(it)
-            Utils.setImageUrl(this, it.sprites?.front_shiny, image_pokemon, image_progress)
+            Utils.setImageUrl(it.sprites?.front_shiny, image_pokemon, image_progress)
         }
     }
 

@@ -6,11 +6,13 @@ import com.lucasdonato.pokemon_api.data.repository.pokemon.PokemonRepository
 import com.lucasdonato.pokemon_api.data.useCase.PokemonUseCase
 import com.lucasdonato.pokemon_api.presentation.details.presenter.DetailsPresenter
 import com.lucasdonato.pokemon_api.presentation.home.presenter.HomePresenter
+import com.lucasdonato.pokemon_api.presentation.splash.presenter.SplashPresenter
 import org.koin.dsl.module
 
 val presenterModules = module {
     factory { HomePresenter(get()) }
     factory { DetailsPresenter(get()) }
+    factory { SplashPresenter() }
 }
 
 val useCaseModules = module {
