@@ -38,31 +38,6 @@ class DetailsPresenter(
         )
     }
 
-    fun getImageInGlide(url: String?, context: Context, image_pokemon: ImageView){
-        image.postValue(Resource.loading())
-        url.let {
-            Glide.with(context).load(it)
-                .listener(object : RequestListener<Drawable> {
-                    override fun onLoadFailed(
-                        e: GlideException?, model: Any?,
-                        target: Target<Drawable>?, isFirstResource: Boolean
-                    ): Boolean {
-                        image.postValue(Resource.error())
-                        return false
-                    }
-
-                    override fun onResourceReady(
-                        resource: Drawable?, model: Any?,
-                        target: Target<Drawable>?, dataSource: DataSource?,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        image.postValue(Resource.success())
-                        return false
-                    }
-                }).into(image_pokemon)
-        }
-    }
-
 }
 
 

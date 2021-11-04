@@ -20,6 +20,7 @@ class HomePresenter(
     fun getList() = runCoroutine {
         getListLiveData.postValue(Resource.loading())
         pokemonUseCase.getPokemonData(limit, offSet)?.let {
+
             getListLiveData.postValue(Resource.success(it.results))
         } ?: getListLiveData.postValue(Resource.error())
     } onError {

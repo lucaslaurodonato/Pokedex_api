@@ -1,52 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/ultra_margin">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/container"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ultra_margin">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_pokemon"
-            android:layout_width="@dimen/card_home"
-            android:layout_height="@dimen/card_recycler_grid"
-            android:layout_margin="@dimen/default_margin"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/pikachu_surprised" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/name_pokemon"
-            style="@style/pixel"
-            android:layout_width="@dimen/match_constraints"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textAllCaps="true"
-            android:textSize="@dimen/x_medium_small_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_pokemon"
-            tools:text="PICHAKU" />
-
-        <ProgressBar
-            android:id="@+id/image_progress"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:indeterminateTint="@color/black"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_pokemon"
+                android:layout_width="@dimen/card_home"
+                android:layout_height="@dimen/card_recycler_grid"
+                android:layout_margin="@dimen/default_margin"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/pikachu_surprised" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/name_pokemon"
+                style="@style/pixel"
+                android:layout_width="@dimen/match_constraints"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:textSize="@dimen/x_medium_small_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_pokemon"
+                tools:text="PICHAKU" />
+
+            <ProgressBar
+                android:id="@+id/image_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/black"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
